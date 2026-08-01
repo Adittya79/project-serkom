@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('detail_peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('peminjaman_id')->constrained('peminjaman')->onDelete('cascade');
-            $table->foreignId('barang_id')->constrained('barang')->onDelete('cascade');
+            $table->foreignId('peminjaman_id')->constrained('peminjamans')->onDelete('cascade');
+            $table->foreignId('barangs_id')->constrained('barangs')->onDelete('cascade');
             $table->integer('jumlah');
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detail_peminjaman');
+        Schema::dropIfExists('_detail_peminjaman');
     }
 };

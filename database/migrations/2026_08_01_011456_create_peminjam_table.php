@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('barang', function (Blueprint $table) {
+        Schema::create('peminjamans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_barang', 225);
-            $table->integer('stok')->default(0);
+            $table->string('nama_peminjam');
+            $table->enum('kategori_peminjam', ['Siswa', 'Guru', 'Ekskul/Organisasi']);
+            $table->date('tgl_peminjaman');
+            $table->date('tgl_pengembalian');
+            $table->enum('status', ['Pending', 'Dipinjam', 'Selesai', 'Ditolak']);
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventaris_barang');
+        Schema::dropIfExists('peminjam');
     }
 };
